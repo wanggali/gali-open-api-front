@@ -13,10 +13,12 @@ import {
   addInterfaceInfoUsingPOST,
   deleteInterfaceInfoUsingPOST,
   listInterfaceInfoByPageUsingGET,
+  offlineInterfaceInfoUsingPOST,
+  onlineInterfaceInfoUsingPOST,
   updateInterfaceInfoUsingPOST,
 } from '@/services/gali-api/interfaceInfoController';
-import CreateModel from '@/pages/InterfaceInfo/components/CreateModel';
-import UpdateModel from '@/pages/InterfaceInfo/components/UpdateModel';
+import CreateModel from '@/pages/Admin/InterfaceInfo/components/CreateModel';
+import UpdateModel from '@/pages/Admin/InterfaceInfo/components/UpdateModel';
 
 const TableList: React.FC = () => {
   /**
@@ -109,6 +111,60 @@ const TableList: React.FC = () => {
       return false;
     }
   };
+
+  /**
+   *  Delete node
+   * @zh-CN 发布
+   *
+   * @param selectedRows
+   */
+  const handleOnline = async (selectedRows: API.InterfaceInfo) => {
+    const hide = message.loading('发布中');
+    if (!selectedRows) return true;
+    try {
+      await onlineInterfaceInfoUsingPOST({
+        id: selectedRows.id,
+      });
+      hide();
+      message.success('发布成功');
+      if (actionRef.current) {
+        actionRef.current.reload();
+      }
+      return true;
+    } catch (error: any) {
+      hide();
+      message.error('发布失败', error.data);
+      return false;
+    }
+  };
+
+  /**
+   *  Delete node
+   * @zh-CN 下线
+   *
+   * @param selectedRows
+   */
+  const handleOffline = async (selectedRows: API.InterfaceInfo) => {
+    const hide = message.loading('下线中');
+    if (!selectedRows) return true;
+    try {
+      await offlineInterfaceInfoUsingPOST({
+        id: selectedRows.id,
+      });
+      hide();
+      message.success('下线成功');
+      if (actionRef.current) {
+        actionRef.current.reload();
+      }
+      return true;
+    } catch (error: any) {
+      hide();
+      message.error('下线失败', error.data);
+      return false;
+    }
+  };
+
+
 
   const columns: ProColumns<API.RuleListItem>[] = [
     {
@@ -214,14 +270,29 @@ const TableList: React.FC = () => {
         >
           <FormattedMessage id="pages.searchTable.config" defaultMessage="修改" />
         </a>,
-        <a
-          key="subscribeAlert"
-          onClick={() => {
-            handleRemove(record);
-          }}
-        >
-          <FormattedMessage id="pages.searchTable.subscribeAlert" defaultMessage="发布/下架" />
-        </a>,
+        record.status === 0 ? (
+          <Button
+            type="text"
+            key="subscribeAlert"
+            onClick={() => {
+              handleOnline(record);
+            }}
+          >
+            <FormattedMessage id="pages.searchTable.subscribeAlert" defaultMessage="发布" />
+          </Button>
+        ) : null,
+        record.status === 1 ? (
+          <Button
+            type="text"
+            danger
+            key="subscribeAlert"
+            onClick={() => {
+              handleOffline(record);
+            }}
+          >
+            <FormattedMessage id="pages.searchTable.subscribeAlert" defaultMessage="下线" />
+          </Button>
+        ) : null,
       ],
     },
   ];
