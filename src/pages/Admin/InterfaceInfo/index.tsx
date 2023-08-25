@@ -35,8 +35,8 @@ const TableList: React.FC = () => {
   const [showDetail, setShowDetail] = useState<boolean>(false);
 
   const actionRef = useRef<ActionType>();
-  const [currentRow, setCurrentRow] = useState<API.RuleListItem>();
-  const [selectedRowsState, setSelectedRows] = useState<API.RuleListItem[]>([]);
+  const [currentRow, setCurrentRow] = useState<API.InterfaceInfo>();
+  const [selectedRowsState, setSelectedRows] = useState<API.InterfaceInfo[]>([]);
 
   /**
    * @en-US International configuration
@@ -164,8 +164,6 @@ const TableList: React.FC = () => {
     }
   };
 
-
-
   const columns: ProColumns<API.RuleListItem>[] = [
     {
       title: (
@@ -208,12 +206,12 @@ const TableList: React.FC = () => {
     {
       title: <FormattedMessage id="pages.searchTable.titleCallNo" defaultMessage="请求头" />,
       dataIndex: 'requestHeader',
-      valueType: 'textarea',
+      valueType: 'jsonCode',
     },
     {
       title: <FormattedMessage id="pages.searchTable.titleCallNo" defaultMessage="请求参数" />,
       dataIndex: 'requestParams',
-      valueType: 'textarea',
+      valueType: 'jsonCode',
     },
     {
       title: <FormattedMessage id="pages.searchTable.titleCallNo" defaultMessage="接口地址" />,
@@ -223,7 +221,7 @@ const TableList: React.FC = () => {
     {
       title: <FormattedMessage id="pages.searchTable.titleCallNo" defaultMessage="响应头" />,
       dataIndex: 'responseHeader',
-      valueType: 'textarea',
+      valueType: 'jsonCode',
     },
     {
       title: <FormattedMessage id="pages.searchTable.titleStatus" defaultMessage="状态" />,

@@ -3,7 +3,14 @@ export default [
     path: '/',
     name: '主页',
     icon: 'smile',
-    component: './Index'
+    component: './Index',
+  },
+  {
+    path: '/interface_info/:id',
+    name: '查看接口',
+    icon: 'smile',
+    component: './InterfaceInfo',
+    hideInMenu: true,
   },
   {
     path: '/user',
@@ -26,6 +33,6 @@ export default [
       },
     ],
   },
-  { path: '/',redirect: '/admin/interface_info' },
+  { path: '/', redirect: '/admin/interface_info' },
   { path: '*', layout: false, component: './404' },
 ];
