@@ -1,57 +1,44 @@
-# Ant Design Pro
+<p align="center">
+  <a href=>
+    <img width="120" src="./public/back.jpg">
+  </a>
+</p>
+<h1 align="center">咖喱开放平台</h1>
 
-This project is initialized with [Ant Design Pro](https://pro.ant.design). Follow is the quick guide for how to use.
+## ✨特性：
 
-## Environment Prepare
+- ###  🧵  免费调用各种特色API
+- ###  🧦  平台简介无任何广告
 
-Install `node_modules`:
+- ###  🤡  有无数个琢磨不透的bug
 
-```bash
-npm install
-```
+## 🔧 技术栈：
 
-or
+### ⭐前端
 
-```bash
-yarn
-```
+- 框架：React
+- 组件库：AntDesignPro+umi
+- 特色组件：proComponent
+- 请求：umi.request
 
-## Provided Scripts
+### ⭐后端
 
-Ant Design Pro provides some useful script to help you quick start and build with web project, code style check and test.
+- 语言：Java8
+- 框架：SpringBoot
+- 数据访问：Mybatis+Mybatis-plus
+- 网关：Gateway
+- 远程调用：Dubbo
+- 注册中心：Nocos
+- 项目管理：Maven
+- 日志：slf4j
+- 接口测试：postman
 
-Scripts provided in `package.json`. It's safe to modify or add additional script:
+### ⭐存储
 
-### Start project
+- 数据库：Mysql5.7
 
-```bash
-npm start
-```
 
-### Build project
+### ⭐部署
+- 容器：Docker
+- 服务器：CentOS
 
-```bash
-npm run build
-```
-
-### Check code style
-
-```bash
-npm run lint
-```
-
-You can also use script to auto fix some lint error:
-
-```bash
-npm run lint:fix
-```
-
-### Test code
-
-```bash
-npm test
-```
-
-## More
-
-You can view full document on our [official website](https://pro.ant.design). And welcome any feedback in our [github](https://github.com/ant-design/ant-design-pro).
